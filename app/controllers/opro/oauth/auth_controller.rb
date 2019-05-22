@@ -26,7 +26,6 @@ class Opro::Oauth::AuthController < OproController
   def ask_user!
     if user_granted_access_before?(current_user, params)
       # Re-Authorize the application, do not ask the user
-      params.delete(:permissions) ## Delete permissions supplied by client app, this was a security hole
       return true
     elsif user_authorizes_the_request?(request)
       # The user just authorized the application from the form
