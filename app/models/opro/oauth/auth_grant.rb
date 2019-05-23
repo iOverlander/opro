@@ -71,7 +71,7 @@ class Opro::Oauth::AuthGrant < ActiveRecord::Base
   end
 
   def update_permissions(permissions = default_permissions)
-    self.permissions = permissions and save if self.permissions != permissions
+    self.permissions = permissions.to_h and save if self.permissions != permissions
   end
 
   def self.find_by_refresh_app(refresh_token, application_id)

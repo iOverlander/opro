@@ -1,18 +1,19 @@
+# frozen_string_literal: true
+
 require 'erb'
 require 'kramdown'
 
 OPRO_MD_ROOT = File.join(File.dirname(__FILE__), '../../../views/opro/oauth/docs/markdown/')
 
 class Opro::Oauth::DocsController < OproController
-  before_filter :set_protocol!
+  before_action :set_protocol!
   helper_method :render_doc
 
-  def index
-  end
+  def index; end
 
   def show
-    @doc  = params[:id]
-    render :file => default_404, :status => 404 and return unless md_exists?(@doc)
+    @doc = params[:id]
+    render(file: default_404, status: 404) && return unless md_exists?(@doc)
   end
 
   def render_doc(name)
@@ -25,11 +26,11 @@ class Opro::Oauth::DocsController < OproController
   private
 
   def default_404
-    Rails.root.join("public", "404")
+    Rails.root.join('public', '404')
   end
 
   def set_protocol!
-    @protocol = Rails.env.production? ? "https" : "http"
+    @protocol = Rails.env.production? ? 'https' : 'http'
   end
 
   def parse_erb(str)
@@ -45,7 +46,7 @@ class Opro::Oauth::DocsController < OproController
   end
 
   def md_exists?(name)
-    File.exists?(doc_md_filename(name.to_s))
+    File.exist?(doc_md_filename(name.to_s))
   end
 
   def read_file(name)

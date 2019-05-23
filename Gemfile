@@ -6,19 +6,12 @@ rails = case rails_version
 when "master"
   {github: "rails/rails"}
 when "default"
-  ">= 3.1.0"
+  "~> 5.0.6"
 else
   "~> #{rails_version}"
 end
 
-devise = case rails_version
-when "master"
-  {github: "plataformatec/devise"}
-when /pre/
-  {github: "plataformatec/devise", branch: "rails4"}
-when "3.1.0", "3.2.0", "default"
-  "~> 2.2"
-end
+
 
 gem "rails", rails
 
@@ -35,12 +28,9 @@ group :development, :test do
 
   gem "launchy"
 
-  gem "sqlite3",                          :platform => [:ruby, :mswin, :mingw]
+  gem "sqlite3", '~> 1.3.0'
 
-  gem "activerecord-jdbcsqlite3-adapter", '>= 1.3.0.beta', :platform => :jruby
-  gem "jdbc-sqlite3",                     :platform => :jruby
-
-  gem "devise", devise if devise
+  gem "devise"
 end
 
 group :test do

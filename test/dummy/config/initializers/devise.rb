@@ -9,14 +9,13 @@ Devise.setup do |config|
   # Configure the class responsible to send e-mails.
   # config.mailer = "Devise::Mailer"
 
-  # Automatically apply schema changes in tableless databases
-  config.apply_schema = false
-
   # ==> ORM configuration
   # Load and configure the ORM. Supports :active_record (default) and
   # :mongoid (bson_ext recommended) by default. Other ORMs may be
   # available as additional gems.
   require 'devise/orm/active_record'
+
+  config.secret_key = 'b9cddad71e7aed3d70e3b2ac75c1654d09181c177f211c9a1c31c9f7c9028aeb603c0b9ee034cc7ca156e840b60efc9f3c7ae3b1f1442e69d1bd1219e2b0f99d'
 
   # ==> Configuration for any authentication mechanism
   # Configure which keys are used when authenticating a user. The default is
