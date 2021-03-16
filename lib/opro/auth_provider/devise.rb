@@ -21,7 +21,7 @@ module Opro
 
       def find_user_for_auth(params)
         return false if params[:password].blank?
-        find_params = params.each_with_object({}) {|(key,value), hash| hash[key] = value if ::Devise.authentication_keys.include?(key.to_sym) }
+        find_params = params.to_h.each_with_object({}) {|(key,value), hash| hash[key] = value if ::Devise.authentication_keys.include?(key.to_sym) }
         # Try to get fancy, some clients have :username hardcoded, if we have nothing in our find hash
         # we can make an educated guess here
         if find_params.blank? && params[:username].present?
